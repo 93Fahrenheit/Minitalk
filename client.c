@@ -6,7 +6,7 @@
 /*   By: fel-abbo <fel-abbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 18:59:53 by fel-abbo          #+#    #+#             */
-/*   Updated: 2024/04/25 07:29:05 by fel-abbo         ###   ########.fr       */
+/*   Updated: 2024/04/25 09:05:05 by fel-abbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int check_PID(char *str)
         ft_putstr("Error, PID does not exist or is too large\n");
          return (-1);
     }
-    return ((int)(secure_overflow));
+    return ((int)secure_overflow);
 }
 int check_str(char *str)
 {
@@ -49,9 +49,36 @@ int check_str(char *str)
     }
     return (0);
 }
+void    send_char(char c, int pid)
+{
+    int	bit;
+
+	bit = 7;
+	while (bit >= 0)
+	{
+		if ((c >> bit) & 1)
+		{
+			if (kill(pid, SIGUSR1) == -1)
+			{
+				ft_putstr("problem in send signal");
+				exit(1);
+			}
+		}
+		else
+		{
+			if (kill(pid, SIGUSR2) == -1)
+			{
+				ft_putstr("problem in send signal");
+				exit(1);
+			}
+		}
+		usleep(150);
+		bit--;
+	}   
+}
 int main(int argc, char **argv)
 {
-    pid_t pid;
+    int pid;
     
     if (argc != 3)
     {
@@ -63,6 +90,5 @@ int main(int argc, char **argv)
         return (EXIT_FAILURE);
     if (check_str(argv[2]) < 0)
         return EXIT_FAILURE;
-    printf("%d\n", pid); 
     return (EXIT_SUCCESS);
 }
