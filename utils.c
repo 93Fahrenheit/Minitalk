@@ -6,11 +6,25 @@
 /*   By: fel-abbo <fel-abbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 03:45:12 by fel-abbo          #+#    #+#             */
-/*   Updated: 2024/04/18 04:09:44 by fel-abbo         ###   ########.fr       */
+/*   Updated: 2024/04/25 07:31:04 by fel-abbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
+
+int	ft_isdigit(int c)
+{
+	if (c >= '0' && c <= '9')
+		return (1);
+	return (0);
+}
+
+int	ft_isprint(int c)
+{
+	if (c >= 32 && c <= 126)
+		return (1);
+	return (0);
+}
 
 long int	ft_atoi(const char *str)
 {
@@ -39,4 +53,36 @@ long int	ft_atoi(const char *str)
 		i++;
 	}
 	return (result * negative);
+}
+void ft_putchar(char c) 
+{
+    write(1, &c, 1);
+}
+
+void ft_putstr(char *str) 
+{
+	int	i;
+	
+	i = 0;
+    while (str[i]) 
+	{
+        write(1, &str[i], 1);
+        i++;
+    }
+}
+
+void ft_putnbr(int nb) 
+{
+    if (nb < 0) 
+	{
+        ft_putchar('-');
+        nb = -nb;
+    }
+    if (nb >= 10) 
+	{
+        ft_putnbr(nb / 10);
+        nb = nb % 10;
+    }
+    if (nb < 10)
+        ft_putchar(nb + 48);
 }
