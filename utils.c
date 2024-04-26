@@ -6,7 +6,7 @@
 /*   By: fel-abbo <fel-abbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 03:45:12 by fel-abbo          #+#    #+#             */
-/*   Updated: 2024/04/25 07:31:04 by fel-abbo         ###   ########.fr       */
+/*   Updated: 2024/04/26 10:00:31 by fel-abbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,15 +36,11 @@ long int	ft_atoi(const char *str)
 	result = 0;
 	negative = 1;
 	while (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13))
-	{
 		i++;
-	}
 	if (str[i] == '-' || str[i] == '+')
 	{
 		if (str[i] == '-')
-		{
 			negative = -negative;
-		}
 		i++;
 	}
 	while (str[i] >= '0' && str[i] <= '9')
@@ -71,7 +67,7 @@ void ft_putstr(char *str)
     }
 }
 
-void ft_putnbr(int nb) 
+void ft_putnbr(long int nb) 
 {
     if (nb < 0) 
 	{

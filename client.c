@@ -6,7 +6,7 @@
 /*   By: fel-abbo <fel-abbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 18:59:53 by fel-abbo          #+#    #+#             */
-/*   Updated: 2024/04/25 09:05:05 by fel-abbo         ###   ########.fr       */
+/*   Updated: 2024/04/26 09:59:44 by fel-abbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int check_PID(char *str)
         ft_putstr("Error, PID does not exist or is too large\n");
          return (-1);
     }
-    return ((int)secure_overflow);
+    return (secure_overflow);
 }
 int check_str(char *str)
 {
@@ -78,8 +78,10 @@ void    send_char(char c, int pid)
 }
 int main(int argc, char **argv)
 {
-    int pid;
+    long int pid;
+    int i;
     
+    i = 0;
     if (argc != 3)
     {
         ft_putstr("Error, this program needs 2 arguments (PID and message)\n");
@@ -90,5 +92,11 @@ int main(int argc, char **argv)
         return (EXIT_FAILURE);
     if (check_str(argv[2]) < 0)
         return EXIT_FAILURE;
+    while (argv[2][i])
+    {
+        send_char(argv[2][i], pid);
+        i++;
+    }
+    send_char('\0', pid);
     return (EXIT_SUCCESS);
 }
