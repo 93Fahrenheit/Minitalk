@@ -6,7 +6,7 @@
 /*   By: fel-abbo <fel-abbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 03:45:12 by fel-abbo          #+#    #+#             */
-/*   Updated: 2024/04/26 10:00:31 by fel-abbo         ###   ########.fr       */
+/*   Updated: 2024/04/28 17:19:05 by fel-abbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,9 @@ int	ft_isdigit(int c)
 	return (0);
 }
 
-int	ft_isprint(int c)
-{
-	if (c >= 32 && c <= 126)
-		return (1);
-	return (0);
-}
-
 long int	ft_atoi(const char *str)
 {
-	int	i;
+	int			i;
 	long int	negative;
 	long int	result;
 
@@ -50,35 +43,36 @@ long int	ft_atoi(const char *str)
 	}
 	return (result * negative);
 }
-void ft_putchar(char c) 
+
+void	ft_putchar(char c)
 {
-    write(1, &c, 1);
+	write(1, &c, 1);
 }
 
-void ft_putstr(char *str) 
+void	ft_putstr(char *str)
 {
 	int	i;
-	
+
 	i = 0;
-    while (str[i]) 
+	while (str[i])
 	{
-        write(1, &str[i], 1);
-        i++;
-    }
+		write(1, &str[i], 1);
+		i++;
+	}
 }
 
-void ft_putnbr(long int nb) 
+void	ft_putnbr(long int nb)
 {
-    if (nb < 0) 
+	if (nb < 0)
 	{
-        ft_putchar('-');
-        nb = -nb;
-    }
-    if (nb >= 10) 
+		ft_putchar('-');
+		nb = -nb;
+	}
+	if (nb >= 10)
 	{
-        ft_putnbr(nb / 10);
-        nb = nb % 10;
-    }
-    if (nb < 10)
-        ft_putchar(nb + 48);
+		ft_putnbr(nb / 10);
+		nb = nb % 10;
+	}
+	if (nb < 10)
+		ft_putchar(nb + 48);
 }

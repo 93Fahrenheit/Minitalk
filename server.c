@@ -6,15 +6,15 @@
 /*   By: fel-abbo <fel-abbo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 19:00:01 by fel-abbo          #+#    #+#             */
-/*   Updated: 2024/04/26 10:40:22 by fel-abbo         ###   ########.fr       */
+/*   Updated: 2024/04/30 06:54:04 by fel-abbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
-void    receive_sig(int sig_number)
+void	receive_sig(int sig_number)
 {
-    static char	c;
+	static char	c;
 	static int	byte;
 
 	if (sig_number == SIGUSR1)
@@ -26,24 +26,24 @@ void    receive_sig(int sig_number)
 	{
 		if (c == '\0')
 			write(1, "\n", 1);
-			else
+		else
 			write(1, &c, 1);
 		c = 0;
 		byte = 0;
 	}
 }
 
-int main(void)
+int	main(void)
 {
-    long int pid;
-    
-    pid = getpid();
-    signal(SIGUSR1, receive_sig);
-    signal(SIGUSR2, receive_sig);
-    ft_putstr("PID :");
-    ft_putnbr(pid);
-    ft_putstr("\n");
-    while (1)
-        ;
-    return (0);
+	long int	pid;
+
+	pid = getpid();
+	signal(SIGUSR1, receive_sig);
+	signal(SIGUSR2, receive_sig);
+	ft_putstr("PID :");
+	ft_putnbr(pid);
+	ft_putstr("\n");
+	while (1)
+		;
+	return (0);
 }

@@ -6,49 +6,48 @@
 #    By: fel-abbo <fel-abbo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/10 19:00:39 by fel-abbo          #+#    #+#              #
-#    Updated: 2024/04/25 05:43:32 by fel-abbo         ###   ########.fr        #
+#    Updated: 2024/04/30 10:16:16 by fel-abbo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-# Noms des exécutables
-CLIENT = client
-SERVEUR = serveur
 
-# Flags de compilation
+CLIENT = client
+SERVER = server
+
+
 FLAGS = -Wall -Wextra -Werror
 
-# En-têtes
-HEADERS_DIR = .  # Ajuste si les fichiers d'en-tête sont dans un autre dossier
 
-# Compilateur
+HEADERS_DIR = .  
+
 CC = gcc
 
-# Sources
+
 SRCS_CLIENT = client.c utils.c
-SRCS_SERVEUR = serveur.c utils.c
+SRCS_SERVER = server.c utils.c
 
-# Objets
+
 OBJS_CLIENT = $(SRCS_CLIENT:.c=.o)
-OBJS_SERVEUR = $(SRCS_SERVEUR:.c=.o)
+OBJS_SERVER = $(SRCS_SERVER:.c=.o)
 
-# Règle implicite de compilation
+
 .c.o:
 	$(CC) $(FLAGS) -I$(HEADERS_DIR) -c $< -o $@
 
-# Cibles
-all: $(CLIENT) $(SERVEUR)
+
+all: $(CLIENT) $(SERVER)
 
 $(CLIENT): $(OBJS_CLIENT)
 	$(CC) $(FLAGS) -o $(CLIENT) $(OBJS_CLIENT)
 
-$(SERVEUR): $(OBJS_SERVEUR)
-	$(CC) $(FLAGS) -o $(SERVEUR) $(OBJS_SERVEUR)
+$(SERVER): $(OBJS_SERVER)
+	$(CC) $(FLAGS) -o $(SERVER) $(OBJS_SERVER)
 
 clean:
-	rm -f $(OBJS_CLIENT) $(OBJS_SERVEUR)
+	rm -f $(OBJS_CLIENT) $(OBJS_SERVER)
 
 fclean: clean
-	rm -f $(CLIENT) $(SERVEUR)
+	rm -f $(CLIENT) $(SERVER)
 
 re: fclean all
 
